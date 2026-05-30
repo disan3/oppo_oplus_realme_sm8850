@@ -99,7 +99,7 @@ on:
         description: '内核后缀(留空默认,开头别加连字符,勿加空格等影响指令运行的保留字符)'
         required: false
         type: string
-        default: 'android16-6-g376529f3e739-ab15072794-4k '
+        default: 'android16-6-g376529f3e739-ab15072794-4k'
       ksusig:
         description: 'KSU sig'
         required: false
@@ -549,7 +549,7 @@ jobs:
 
           cd common
           wget https://github.com/superturtlee/kernel-workshop-docker/raw/refs/heads/oplus/patch/fulldocker/superkernel.diff
-          patch -p1 -F 1 < superkernel.diff
+          patch -p1 -F 3 < superkernel.diff
       
       - name: 启用内核级基带保护
         if: inputs.baseband_guard
