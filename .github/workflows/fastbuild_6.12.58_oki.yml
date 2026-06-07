@@ -549,7 +549,7 @@ jobs:
           echo "CONFIG_DM_THIN_PROVISIONING=y" >> ./common/arch/arm64/configs/gki_defconfig
 
           cd common
-          wget https://github.com/superturtlee/kernel-workshop-docker/raw/refs/heads/oplus/patch/fulldocker/superkernel.diff
+          wget https://github.com/superturtlee/kernel-workshop-docker/raw/refs/heads/oplus_test/patch/fulldocker/superkernel.diff
           patch -p1 -F 3 < superkernel.diff
       
       - name: 启用内核级基带保护
