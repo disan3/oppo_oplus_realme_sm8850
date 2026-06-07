@@ -364,6 +364,12 @@ jobs:
           else
             echo "已选择无内置KernelSU模式，跳过KernelSU配置..."
           fi
+          # 去除 KernelSU 版本号 dirty 后缀
+          if [[ -f "KernelSU/kernel/Kbuild" ]]; then
+            sed -i 's/KSU_COMMIT_SHA  := $(KSU_COMMIT_SHA)-dirty/KSU_COMMIT_SHA  := $(KSU_COMMIT_SHA)/' KernelSU/kernel/Kbuild
+          elif [[ -f "KernelSU-Next/kernel/Kbuild" ]]; then
+            sed -i 's/KSU_COMMIT_SHA  := $(KSU_COMMIT_SHA)-dirty/KSU_COMMIT_SHA  := $(KSU_COMMIT_SHA)/' KernelSU-Next/kernel/Kbuild
+          fi
 
       - name: 应用 KernelSU & SUSFS 补丁
         if: inputs.susfs_enable
