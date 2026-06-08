@@ -565,15 +565,14 @@ jobs:
         run: |
           cd kernel_workspace
 
-          wget https://github.com/superturtlee/kernel-workshop-docker/raw/refs/heads/oplus_test/patch/fulldocker/defconfig_append
-          cat ./defconfig_append >> ./common/arch/arm64/configs/gki_defconfig
+          git clone --depth=1 -b oplus_test https://github.com/superturtlee/kernel-workshop-docker.git docker_patch
+          cat ./docker_patch/patch/fulldocker/defconfig_append >> ./common/arch/arm64/configs/gki_defconfig
 
           echo "CONFIG_NETFILTER_XT_MATCH_ADDRTYPE=y" >> ./common/arch/arm64/configs/gki_defconfig
           echo "CONFIG_DM_THIN_PROVISIONING=y" >> ./common/arch/arm64/configs/gki_defconfig
 
           cd common
-          wget https://github.com/superturtlee/kernel-workshop-docker/raw/refs/heads/oplus_test/patch/fulldocker/superkernel.diff
-          patch -p1 -F 3 < superkernel.diff
+          patch -p1 -F 3 < ../docker_patch/patch/fulldocker/superkernel.diff
       
       - name: 启用内核级基带保护
         if: inputs.baseband_guard
